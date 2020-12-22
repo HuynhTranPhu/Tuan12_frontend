@@ -12,3 +12,4 @@ code {
     monospace;
 }
 @import url("./components/slider/Slider.css");
+@import url("./components/View.order/View.order.css");

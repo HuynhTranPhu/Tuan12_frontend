@@ -8,6 +8,7 @@ import UserContainer from "./user.container";
 import LoginContainer from "./login.container";
 import StatisticalContainer from './statistical.container'
 import OrderContainer from './order.container'
+import viewOrderContainer from "./view.order.container";
 class App extends Component {
   render() {
     return (
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path="/login" component={LoginContainer} />
           <Route exact path="/statistical" component={StatisticalContainer} />
           <Route exact path="/ordermanager" component={OrderContainer} />
+          <Route exact path="/view-orderDetail" component={viewOrderContainer} />
         </Switch>
       </Router>
     );
