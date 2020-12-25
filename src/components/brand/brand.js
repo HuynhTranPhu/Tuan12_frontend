@@ -195,7 +195,7 @@ class Brand extends Component {
                         <td>{element.name}</td>
                         <td>
                           <div className="btn-group">
-                            <a href="/#"
+                            <a
                               onClick={() =>
                                 this.setState({
                                   currname: element.name,

@@ -316,6 +316,10 @@ export const setOrder = (data) => ({
     type: productTypes.ORDER_SET_DATA,
     data
 })
+export const setOrderById = (data) => ({
+    type: productTypes.ORDER_SET_DATA_BY_ID,
+    data
+})
 export const orderSetPage = (page) => ({
     type: productTypes.ORDER_SET_PAGE,
     page
@@ -340,3 +344,14 @@ export const getOrder = (status) => async(dispatch, getState) => {
     dispatch(orderSetTotalPage(res.data.totalPage))
 
 }
+// export const getOrderById = (id_order) => async(dispatch, getState) => {
+//     let link = "/order/detail/"+ id_order;
+//     let res = null
+//     try {
+//        res =  await axios.get(link)
+//     }
+//     catch(err) {
+//         return
+//     }
+//     dispatch(setOrderById(res.data.data))
+// }

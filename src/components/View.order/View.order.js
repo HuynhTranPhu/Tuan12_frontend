@@ -59,32 +59,10 @@ class ViewOrder extends Component {
 //       );
 //     }
 //   }
-  HandelViewDetails(){
-           
-  }
   render() {
     return (
         <div className="placeorder">
               <div className="placeorder-info">
-                  <div>
-                      <h3>
-                          Shipping
-                      </h3>
-                      <div>
-                          {this.props.order.map(item=>item.address )},
-                          {this.props.order.map(item=>item.city)},
-                          {this.props.order.map(item=> item.posteCode )},
-                          {this.props.order.map(item=>item.phone)}
-                      </div>
-                  </div>
-                  <div>
-                      <h3>
-                          Payment
-                      </h3>
-                      <div>
-                          Payment Method: {this.props.order.map(item=>item.payment)}
-                      </div>
-                  </div>
                       <div className="cart-page">
                           <div className="container-fluid">
                               <div className="row">
@@ -103,7 +81,7 @@ class ViewOrder extends Component {
                                                   </thead>
                                                   <tbody className="align-middle">
                                                       {
-                                                          this.props.order.map(item=>
+                                                          this.props.orderById.map(item=>
                                                               <>
                                                                   
                                                                   {item.cart.map(i=>  
@@ -154,7 +132,7 @@ class ViewOrder extends Component {
                                 SubTotal
                             </div>
                             <div>
-                                ${this.props.order.map(item=>item.order_subtotal.toFixed(2) )}
+                                ${this.props.orderById.map(item=>item.order_subtotal.toFixed(2) )}
                             </div>
                         
                         
@@ -176,7 +154,7 @@ class ViewOrder extends Component {
                             Order Total
                         </div>
                         <div>
-                            ${this.props.order.map(item=>item.order_subtotal.toFixed(2) )}
+                            ${this.props.orderById.map(item=>item.order_subtotal.toFixed(2) )}
                         </div>
                     </li>
                 </ul>   

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 class Order extends Component {
   constructor() {
     super();
-    this.HandelViewDetails = this.HandelViewDetails.bind(this);
     this.state = {
       pagination: [],
       status: true
@@ -58,126 +57,6 @@ class Order extends Component {
         </ul>
       );
     }
-  }
-  HandelViewDetails(){
-            <div className="placeorder">
-              <div className="placeorder-info">
-                  <div>
-                      <h3>
-                          Shipping
-                      </h3>
-                      <div>
-                          {this.props.order.map(item=>item.address )},
-                          {this.props.order.map(item=>item.city)},
-                          {this.props.order.map(item=> item.posteCode )},
-                          {this.props.order.map(item=>item.phone)}
-                      </div>
-                  </div>
-                  <div>
-                      <h3>
-                          Payment
-                      </h3>
-                      <div>
-                          Payment Method: {this.props.order.map(item=>item.payment)}
-                      </div>
-                  </div>
-                      <div className="cart-page">
-                          <div className="container-fluid">
-                              <div className="row">
-                                  <div className="col-lg-12" >
-                                      <div className="cart-page-inner">
-                                          <div className="table-responsive">
-                                              <table className="table table-bordered">
-                                                  <thead className="thead-dark"> 
-                                                          <tr>
-                                                              <th>Product</th>
-                                                              <th>Price</th>
-                                                              <th>Quantity</th>
-                                                              <th>Total</th>
-                                                              
-                                                          </tr>    
-                                                  </thead>
-                                                  <tbody className="align-middle">
-                                                      {
-                                                          this.props.order.map(item=>
-                                                              <>
-                                                                  
-                                                                  {item.cart.map(i=>  
-                                                                      <tr key={i._id}>
-
-                                                                          <td>
-                                                                              <div className="img">
-                                                                                  <Link to={"/product/"+i._id}>
-                                                                                  <img src={i.img} alt="Product" />
-                                                                                  </Link>
-                                                                                  <p><Link to ={"/product/" +i._id}>  {i.name}</Link></p>     
-                                                                              </div>
-                                                                          </td>
-                                                                          <td>${i.price}</td>
-                                                                          <td>
-                                                                              <div className="qty">
-                                                                                  
-                                                                                  <input type="text"
-                                                                                  value={i.count}  />
-                                                                                  
-                                                                              </div>
-                                                                          </td>
-                                                                          <td>${i.price * i.count}</td>
-
-                                                                      </tr>
-                                                                      
-                                                                  )}
-                                                              </>
-                                                          )}
-                                                      
-                                                  </tbody>
-                                              </table>
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                  </div>
-              </div>
-            <div className="placeorder-action">
-                <ul>
-                    <li>
-                        <h3><b>Order Summary</b></h3>
-                    </li>
-                    <li>
-                        
-                            <div>
-                                SubTotal
-                            </div>
-                            <div>
-                                ${this.props.order.map(item=>item.order_subtotal.toFixed(2) )}
-                            </div>
-                        
-                        
-                    </li>
-                    <li>
-                        
-                            <div>
-                                Shipping
-                            </div>
-                            <div>
-                                {/* ${this.props.order.map(item=>item.shipping.toFixed(2) )} */}
-                            </div>
-                        
-                        
-                    </li>
-                    <li>
-                        
-                        <div>
-                            Order Total
-                        </div>
-                        <div>
-                            ${this.props.order.map(item=>item.order_subtotal.toFixed(2) )}
-                        </div>
-                    </li>
-                </ul>   
-            </div>
-        </div>
   }
   render() {
     return (
@@ -241,6 +120,9 @@ class Order extends Component {
                       <i className="icon_calendar" />  Date
                     </th>
                     <th>
+                      <i className="fas fa-money-bill" />  Total
+                    </th>
+                    <th>
                       <i className=" icon_cart" /> Products
                     </th>
                   </tr>
@@ -256,15 +138,20 @@ class Order extends Component {
                         <td>{element.email}</td>
                         <td>{element.phone}</td>
                         <td>{element.order_date.substring(0, 10)}</td>
+                        <td>{element.order_subtotal}</td>
                         <td>
-                          {/* <select>
+                            {/* {element.cart.map(item => 
+                               item.name + " - " + item.count + <br/>)
+                            } */}
+                         
+                          <select>
                             <option
                               value=""
-                              disabled
+                               disabled
                               selected
                               style={{ display: "none" }}
                             >
-                              Products
+                              List Products
                             </option>
                             {element.cart.map((item, index) => {
                               return (
@@ -273,9 +160,7 @@ class Order extends Component {
                                   </option>
                               )
                             })}
-                          </select> */}
-                          <Link to="/view-orderDetail">View Details</Link>
-                          {/* <button  onClick={this.HandelViewDetails}>View Details</button> */}
+                          </select>
                         </td>
                       </tr>
                     );

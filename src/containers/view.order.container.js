@@ -12,6 +12,7 @@ class ViewOrderContainer extends Component {
   }
   async componentWillMount() {
     this.props.productActions.getOrder("true");
+    this.props.productActions.getOrderById("5fd97610d7154d0017017265");
     let res = await this.props.userActions.auth();
     if (res === false) this.props.history.push("/login");
   }
@@ -29,7 +30,7 @@ class ViewOrderContainer extends Component {
         <NavbarContainer />
         <Slider />
         <ViewOrder
-          order={this.props.order}
+          orderById={this.props.orderById}
         />
       </section>
     );
@@ -37,7 +38,8 @@ class ViewOrderContainer extends Component {
 }
 const mapStateToProps = state => ({
   islogin: state.userReducers.user.islogin,
-  order: state.productReducers.order.data
+  order: state.productReducers.order.data,
+  orderById: state.productReducers.order.dataId
 });
 
 const mapDispatchToProps = dispatch => {

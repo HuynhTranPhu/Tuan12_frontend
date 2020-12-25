@@ -108,7 +108,7 @@ const brand = (state = {data: [], page: 1, totalpage: null}, action) => {
         default: return state
     }
 }
-const order = (state = { data: [], page: 1, totalpage: null}, action) => {
+const order = (state = { data: [], dataId:[], page: 1, totalpage: null}, action) => {
     switch(action.type) {
         case productTypes.ORDER_SET_PAGE: {
             return {
@@ -126,6 +126,12 @@ const order = (state = { data: [], page: 1, totalpage: null}, action) => {
             return {
                 ...state,
                 data: action.data
+            }
+        }
+        case productTypes.ORDER_SET_DATA_BY_ID: {
+            return {
+                ...state,
+                dataId: action.data
             }
         }
         default: return state

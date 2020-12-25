@@ -9,7 +9,7 @@ class Navbar extends Component {
                     <div className="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i className="icon_menu"></i></div>
                 </div>
                 <Link to="/" className="logo">E-Store <span className="lite">Admin</span></Link>
-                <div className="nav search-row" id="top_menu">
+                {/* <div className="nav search-row" id="top_menu">
                     <ul className="nav top-menu">
                         <li>
                             <form className="navbar-form">
@@ -17,7 +17,7 @@ class Navbar extends Component {
                             </form>
                         </li>
                     </ul>
-                </div>
+                </div> */}
 
                 <div className="top-nav notification-row">
                     <ul className="nav pull-right top-menu">
@@ -222,10 +222,10 @@ class Navbar extends Component {
                             <ul className="dropdown-menu extended logout">
                                 <div className="log-arrow-up"></div>
                                 <li className="eborder-top">
-                                    <Link to="/"><i className="icon_profile"></i> My Profile</Link>
+                                    <Link to="/"><i className="icon_profile"></i> MY PROFILE</Link>
                                 </li>
                                 <li>
-                                    <a onClick={() => this.props.logout()}><i className="icon_key_alt"></i> Log Out</a>
+                                    <a onClick={() => this.props.logout()}><i className="icon_key_alt"></i> LOG OUT</a>
                                 </li>
                                 {/* <li>
                                     <a href="documentation.html"><i className="icon_key_alt"></i> Documentation</a>
