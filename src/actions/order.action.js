@@ -1,9 +1,8 @@
 import axios from "axios";
-import { orderConstants } from "../constants/action.types";
+import { orderConstants,VIEW_HISTORY_REQUEST,VIEW_HISTORY_SUCCESS, VIEW_HISTORY_FAIL } from "../constants/action.types";
 
-
-//Get all orders of customer
-export const getCustomerOrders = () =>async (dispatch)=> {
+export const getCustomerOrders = () => async (dispatch)=> {
+   
     try {
       dispatch({ type: orderConstants.GET_CUSTOMER_ORDER_REQUEST });
       const {data} = await axios.get("/order/all");
@@ -11,23 +10,22 @@ export const getCustomerOrders = () =>async (dispatch)=> {
           type: orderConstants.GET_CUSTOMER_ORDER_SUCCESS,
           payload: data
         });
-        console.log(data);
-      }
-      catch (error) {
+       
+    } catch (error) {
       dispatch({
         type: orderConstants.GET_CUSTOMER_ORDER_FAILURE,
-        payload: { error },
+        payload: error.message
       });
-      console.log(error);
-      };
+    }
 };
 // export const getCustomerOrders = () => {
 //   return async (dispatch) => {
 //     dispatch({ type: orderConstants.GET_CUSTOMER_ORDER_REQUEST });
 //     try {
-//       const res = await axios.get("/order/all");
+//       const res = await axios.post("/order/getCustomerOrders");
 //       if (res.status === 200) {
 //         const { orders } = res.data;
+//         //console.log(orders);
 //         dispatch({
 //           type: orderConstants.GET_CUSTOMER_ORDER_SUCCESS,
 //           payload: { orders },
@@ -52,7 +50,7 @@ export const updateOrder = (payload) => {
       const res = await axios.post("/order/update", payload);
       if (res.status === 201) {
         dispatch({ type: orderConstants.UPDATE_CUSTOMER_ORDER_SUCCESS });
-        dispatch(getCustomerOrders());
+        dispatch(viewHistoryGet(payload.id_order));
       } else {
         const { error } = res.data;
         dispatch({
@@ -65,3 +63,18 @@ export const updateOrder = (payload) => {
     }
   };
 };
+export const viewHistoryGet = (id_order) => async (dispatch) =>{
+  try{
+      dispatch({type: VIEW_HISTORY_REQUEST, payload: id_order});
+      const {data} = await axios.get("/order/detail/" +id_order);
+      dispatch({type: VIEW_HISTORY_SUCCESS, payload:data });
+      //console.log(data);
+  }
+  catch(error){
+      const message=
+      error.response && error.response.data.message
+      ? error.response.data.message
+      : error.message;
+      dispatch({type: VIEW_HISTORY_FAIL, payload: message})
+  }
+}

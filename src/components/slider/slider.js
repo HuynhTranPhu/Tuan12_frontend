@@ -37,7 +37,7 @@ class Slider extends Component {
                             </Link>
                         </li>
                         <li className="active">
-                            <Link className="" to="/ordermanager">
+                            <Link className="" to="/order">
                                 <i className="icon_currency"></i>
                                 <span>Order</span>
                             </Link>

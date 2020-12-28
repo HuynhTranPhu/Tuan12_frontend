@@ -59,9 +59,9 @@
 //   mapDispatchToProps
 // )(OrderContainer);
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateOrder } from "../../actions/order.action";
+import { getCustomerOrders, updateOrder, viewHistoryGet } from "../../actions/order.action";
 import Card from "../../components/UI/Card/index";
 import NavbarContainer from "../navbar.container";
 import Slider from "../slider.container";
@@ -74,10 +74,12 @@ import "./index.css";
  **/
 
 const Orders = (props) => {
-  const order = useSelector((state) => state.orderReducers.order);
+  //const order = useSelector((state) => state.order);
+  const viewHistoryOder = useSelector((state) => state.viewHistoryOder);
+  const {viewHistory} = viewHistoryOder;
   const [type, setType] = useState("");
   const dispatch = useDispatch();
-  console.log(order);
+  //console.log(viewHistory);
 
   const onOrderUpdate = (id_order) => {
     const payload = {
@@ -94,15 +96,21 @@ const Orders = (props) => {
     }
     return "";
   };
+  useEffect(() => {
+    dispatch(viewHistoryGet(props.match.params.id));
+    //dispatch(viewHistoryGet(id_order));
+  }
+, [dispatch])
 
   return (
     <section id="container" className="">
     <NavbarContainer /> 
     <Slider />
-    {order.orders.map((orderItem, index) => (
+    
+    {viewHistory.map((orderItem, index) => (
         <Card 
           key={index}
-          headerLeft={orderItem._id}
+          headerLeft={"OrderId:"+" "+orderItem._id}
         >
           <div 
             style={{
@@ -129,6 +137,14 @@ const Orders = (props) => {
             <div>
               <span className="title">Payment Type</span> <br />
               <span className="value">{orderItem.payment}</span>
+            </div>
+            <div>
+              <span className="title">Phone</span> <br />
+              <span className="value">{orderItem.phone}</span>
+            </div>
+            <div>
+              <span className="title">Address</span> <br />
+              <span className="value">{orderItem.address}</span>
             </div>
             <div>
               <span className="title">Payment Status</span> <br />
