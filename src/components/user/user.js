@@ -157,16 +157,16 @@ class User extends Component {
         noti: ""
       });
     }
-    if (password.length < 6) {
-      this.setState({
-        noti: "Password invalid"
-      });
-      return;
-    } else {
-      this.setState({
-        noti: ""
-      });
-    }
+    // if (password.length < 6) {
+    //   this.setState({
+    //     noti: "Password invalid"
+    //   });
+    //   return;
+    // } else {
+    //   this.setState({
+    //     noti: ""
+    //   });
+    // }
     if (name.length < 3) {
       this.setState({
         noti: "First name invalid"
@@ -379,6 +379,9 @@ class User extends Component {
                       <i className="icon_profile" />Name
                     </th>
                     <th>
+                      <i className="icon_check_alt2" />Status
+                    </th>
+                    <th>
                       <i className="icon_cogs" />Action
                     </th>
                   </tr>
@@ -387,6 +390,7 @@ class User extends Component {
                       <tr>
                         <td>{element.email}</td>
                         <td>{element.name}</td>
+                        <td>{element.status.toString()}</td>
                         <td>
                           <div className="btn-group">
                             <a

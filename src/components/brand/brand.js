@@ -92,7 +92,7 @@ class Brand extends Component {
         <div className="form-group">
           <div className="col-lg-offset-2 col-lg-10">
             <button
-              onClick={() => this.props.addBrand(this.state.name)}
+              onClick={() => this.props.addBrand(this.state.name, this.state.status)}
               className="btn-custom"
             >
               Add
@@ -100,7 +100,7 @@ class Brand extends Component {
             <button
               disabled
               onClick={() =>
-                this.props.updateBrand(this.state.id, this.state.name)
+                this.props.updateBrand(this.state.id, this.state.name, this.state.status)
               }
               className="btn-custom"
             >
@@ -121,14 +121,14 @@ class Brand extends Component {
           <div className="col-lg-offset-2 col-lg-10">
             <button
               disabled
-              onClick={() => this.props.addBrand(this.state.name)}
+              onClick={() => this.props.addBrand(this.state.name,this.state.status)}
               className="btn-custom"
             >
               Add
             </button>
             <button
               onClick={() =>
-                this.props.updateBrand(this.state.id, this.state.name)
+                this.props.updateBrand(this.state.id, this.state.name, this.state.status)
               }
               className="btn-custom"
             >
@@ -186,6 +186,9 @@ class Brand extends Component {
                       <i className="icon_profile" /> Name
                     </th>
                     <th>
+                      <i className="icon_check_alt2" /> Status
+                    </th>
+                    <th>
                       <i className="icon_cogs" /> Action
                     </th>
                   </tr>
@@ -193,6 +196,7 @@ class Brand extends Component {
                     return (
                       <tr>
                         <td>{element.name}</td>
+                        <td>{element.status.toString()}</td>
                         <td>
                           <div className="btn-group">
                             <a
@@ -201,6 +205,7 @@ class Brand extends Component {
                                   currname: element.name,
                                   name: element.name,
                                   id: element._id,
+                                  status:element.status,
                                   currType: "update"
                                 })
                               }
@@ -245,6 +250,31 @@ class Brand extends Component {
                           type="text"
                           required
                         />
+                      </div>
+                    </div>
+                    <div className="form-group">
+                    <label for="comment" className="control-label col-lg-2">
+                        Status
+                      </label>
+                      <div className="col-lg-10" >
+                        <form>
+                          <label class="radio-inline">
+                            <input
+                              checked={this.state.status}
+                              onClick={() => this.setState({ status: true })}
+                              type="radio"
+                              name="optradio"
+                            />True
+                          </label>
+                          <label class="radio-inline">
+                            <input
+                              checked={!this.state.status}
+                              onClick={() => this.setState({ status: false })}
+                              type="radio"
+                              name="optradio"
+                            />False
+                          </label>
+                        </form>
                       </div>
                     </div>
                     <div className="form-group">

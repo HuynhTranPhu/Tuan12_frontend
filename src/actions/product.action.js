@@ -178,13 +178,14 @@ export const addCategory =  (name, path) => async (dispatch, getState) => {
     dispatch(getCategory())
 }
 
-export const updateCategory =  (id, name) => async (dispatch, getState) => {
+export const updateCategory =  (id, name, status) => async (dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.post('/admin/updatecategory', {
+        await axios.put('/admin/updatecategory', {
             id: id,
-            name: name
+            name: name,
+            status:status
         })
     }
     catch(err) {
@@ -226,13 +227,14 @@ export const addBrand =  (name) => async (dispatch, getState) => {
     dispatch(getBrand())
 }
 
-export const updateBrand =  (id, name) => async (dispatch, getState) => {
+export const updateBrand =  (id, name, status) => async (dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.post('/admin/updatebrand', {
+        await axios.put('/admin/updatebrand', {
             id: id,
-            name: name
+            name: name,
+            status:status
         })
     }
     catch(err) {
@@ -328,22 +330,22 @@ export const orderSetTotalPage = (totalpage) => ({
     type: productTypes.ORDER_SET_TOTAL_PAGE,
     totalpage
 })
-export const getOrder = (status) => async(dispatch, getState) => {
-    let link = "/order/status/true"
-    if(status === "false") {
-        link = "/order/status/false"
-    }
-    let res = null
-    try {
-       res =  await axios.get(link)
-    }
-    catch(err) {
-        return
-    }
-    dispatch(setOrder(res.data.data))
-    dispatch(orderSetTotalPage(res.data.totalPage))
+// export const getOrder = (status) => async(dispatch, getState) => {
+//     let link = "/order/status/true"
+//     if(status === "false") {
+//         link = "/order/status/false"
+//     }
+//     let res = null
+//     try {
+//        res =  await axios.get(link)
+//     }
+//     catch(err) {
+//         return
+//     }
+//     dispatch(setOrder(res.data.data))
+//     dispatch(orderSetTotalPage(res.data.totalPage))
 
-}
+// }
 // export const getOrderById = (id_order) => async(dispatch, getState) => {
 //     let link = "/order/detail/"+ id_order;
 //     let res = null

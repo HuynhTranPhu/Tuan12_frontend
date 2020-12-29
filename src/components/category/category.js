@@ -7,7 +7,6 @@ class Category extends Component {
       pagination: [],
       currname: null,
       name: null,
-      path: null,
       id: null,
       noti: null,
       currType: "add"
@@ -36,7 +35,6 @@ class Category extends Component {
       this.setState({
         noti: "add success",
         name: "",
-        path: "",
         currType: "add"
       });
     }
@@ -49,13 +47,12 @@ class Category extends Component {
         noti: "",
         id: null,
         name: "",
-        path: "",
         currType: "add"
       });
     }
   }
   add = () => {
-    this.props.addCategory(this.state.name, this.state.path);
+    this.props.addCategory(this.state.name, this.state.status);
   };
   renderPagination() {
     if (this.state.pagination.length === 0) {
@@ -106,7 +103,7 @@ class Category extends Component {
             <button
               disabled
               onClick={() =>
-                this.props.updateCategory(this.state.id, this.state.name, this.state.path)
+                this.props.updateCategory(this.state.id, this.state.name,this.state.status)
               }
               className="btn-custom"
             >
@@ -130,7 +127,7 @@ class Category extends Component {
             </button>
             <button
               onClick={() =>
-                this.props.updateCategory(this.state.id, this.state.name, this.state.path)
+                this.props.updateCategory(this.state.id, this.state.name,this.state.status)
               }
               className="btn-custom"
             >
@@ -152,7 +149,6 @@ class Category extends Component {
         noti: "",
         id: null,
         name: "",
-        path: "",
         currType: "add"
       })
   }
@@ -190,7 +186,7 @@ class Category extends Component {
                       <i className="icon_profile" /> Name
                     </th>
                     <th>
-                      <i className="icon_profile" /> Path
+                      <i className="icon_check_alt2" /> Status
                     </th>
                     <th>
                       <i className="icon_cogs" /> Action
@@ -200,7 +196,7 @@ class Category extends Component {
                     return (
                       <tr>
                         <td>{element.name}</td>
-                        <td>{element.path}</td>
+                        <td>{element.status.toString()}</td>
                         <td>
                           <div className="btn-group">
                             <a
@@ -208,7 +204,7 @@ class Category extends Component {
                                 this.setState({
                                   currname: element.name,
                                   name: element.name,
-                                  path: element.path,
+                                  status:element.status,
                                   id: element._id,
                                   currType: "update"
                                 })
@@ -256,25 +252,29 @@ class Category extends Component {
                         />
                       </div>
                     </div>
-                    <div className="form-group ">
-                      <label for="cname" className="control-label col-lg-2">
-                        Path <span className="required">*</span>
+                    <div className="form-group">
+                    <label for="comment" className="control-label col-lg-2">
+                        Status
                       </label>
-                      <div className="col-lg-10">
-                        <input
-                          onChange={e => {
-                            this.setState({
-                              path: e.target.value
-                            });
-                          }}
-                          value={this.state.path}
-                          className="form-control"
-                          id="cname"
-                          name="fullname"
-                          minlength="5"
-                          type="text"
-                          required
-                        />
+                      <div className="col-lg-10" >
+                        <form>
+                          <label class="radio-inline">
+                            <input
+                              checked={this.state.status}
+                              onClick={() => this.setState({ status: true })}
+                              type="radio"
+                              name="optradio"
+                            />True
+                          </label>
+                          <label class="radio-inline">
+                            <input
+                              checked={!this.state.status}
+                              onClick={() => this.setState({ status: false })}
+                              type="radio"
+                              name="optradio"
+                            />False
+                          </label>
+                        </form>
                       </div>
                     </div>
                     <div className="form-group">
