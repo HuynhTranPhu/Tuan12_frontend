@@ -1,4 +1,4 @@
-import { orderConstants, VIEW_HISTORY_FAIL, VIEW_HISTORY_REQUEST, VIEW_HISTORY_SUCCESS } from "../constants/action.types";
+import { orderConstants, REMOVE_ORDER_FAIL, REMOVE_ORDER_REQUEST, REMOVE_ORDER_SUCCESS, VIEW_HISTORY_FAIL, VIEW_HISTORY_REQUEST, VIEW_HISTORY_SUCCESS } from "../constants/action.types";
 //import { combineReducers } from 'redux';
 
 const initState = {
@@ -61,4 +61,15 @@ function viewHistoryReducer (state = { viewHistory:[]}, action){
 //           return state;
 //   }
 // }
-export {viewHistoryReducer}
+function removeOrderReducer(state={}, action){
+  switch(action.type){
+      case REMOVE_ORDER_REQUEST:
+          return {loading : true};
+      case REMOVE_ORDER_SUCCESS:
+          return {loading : false, success : true};
+      case REMOVE_ORDER_FAIL:
+          return {loading : false, error : action.payload};
+      default : return state;
+  }
+}
+export {viewHistoryReducer, removeOrderReducer}

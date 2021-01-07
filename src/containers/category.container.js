@@ -34,9 +34,9 @@ class CategoryContainer extends Component {
             <Slider/>
             <Category
                 category={this.props.category}
-                addCategory={(name, path) => this.props.productActions.addCategory(name,path)}
+                addCategory={(name, status) => this.props.productActions.addCategory(name,status)}
                 isadd={this.props.isadd}
-                updateCategory={(id, name, path) => this.props.productActions.updateCategory(id, name, path)}
+                updateCategory={(id, name, status) => this.props.productActions.updateCategory(id, name, status)}
                 isupdate={this.props.isupdate}
                 page={this.props.page}
                 totalpage={this.props.totalpage}

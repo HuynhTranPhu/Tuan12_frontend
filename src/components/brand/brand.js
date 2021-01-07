@@ -34,7 +34,6 @@ class Brand extends Component {
     } else if (nextProps.isadd === true) {
       this.setState({
         noti: "add brand success",
-        id: null,
         name: "",
         currType: 'add'
       });

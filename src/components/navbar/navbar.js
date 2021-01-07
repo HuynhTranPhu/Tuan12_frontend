@@ -214,7 +214,7 @@ class Navbar extends Component {
                         <li className="dropdown">
                             <a data-toggle="dropdown" className="dropdown-toggle" href="#">
                                 <span className="profile-ava">
-                                    <img alt="" src="img/avatar-mini2.jpg" />
+                                    <img alt="" src="/img/avatar-mini2.jpg" />
                                 </span>
                                 <span className="username">Trần Phú</span>
                                 <b className="caret"></b>

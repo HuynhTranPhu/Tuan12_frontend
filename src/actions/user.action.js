@@ -76,14 +76,14 @@ export const addUser = (email, password, name , is_admin) => async (dispatch, ge
     dispatch(addUserSuccess())
     dispatch(getUser())
 }
-export const updateUser = (email, name, is_admin) => async (dispatch, getState) => {
+export const updateUser = (email, name, status) => async (dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.post('/admin/updateuser', {
+        await axios.put('/admin/updateuser', {
             email: email,
             name: name,
-            is_admin: is_admin
+            status: status
         })
     }
     catch (err) {
@@ -98,7 +98,7 @@ export const deleteUser = (email) => async (dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.post('/admin/deleteuser',{
+        await axios.put('/admin/deleteuser',{
             email: email
         })
     }

@@ -145,7 +145,7 @@ class User extends Component {
       email,
       password,
       name,
-      is_admin
+      status
     } = this.state;
     if (!this.isvalidEmail(email)) {
       this.setState({
@@ -180,7 +180,7 @@ class User extends Component {
     this.props.updateUser(
       email,
       name,
-      is_admin
+      status
     );
   };
   renderBtn = () => {

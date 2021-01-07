@@ -1,5 +1,5 @@
 .orderTrack{
-    width: 500px;
+    width: 700px;
     display: flex;
 }
 .orderStatus{
@@ -37,13 +37,25 @@
 }
 
 .title{
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
 }
 .value{
-    font-size: 12px;
+    font-size: 14px;
     text-transform: capitalize;
 }
 .confirm{
     background-color: #106894;
+}
+.cancel{
+    background-color: #106894;
+    margin-left: 15px;
+}
+.status{
+    font-size: 16px;
+    font-weight: 400;
+}
+.date{
+    font-size: 12px;
+    font-weight: 400;
 }

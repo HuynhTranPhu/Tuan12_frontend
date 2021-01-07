@@ -34,9 +34,9 @@ class BrandContainer extends Component {
         <Brand
           brand={this.props.brand}
           isadd={this.props.isadd}
-          addBrand={name => this.props.productActions.addBrand(name)}
-          updateBrand={(id, name) =>
-            this.props.productActions.updateBrand(id, name)
+          addBrand={(name, status) => this.props.productActions.addBrand(name,status)}
+          updateBrand={(id, name,status) =>
+            this.props.productActions.updateBrand(id, name,status)
           }
           isupdate={this.props.isupdate}
           page={this.props.page}

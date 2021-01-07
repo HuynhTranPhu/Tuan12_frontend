@@ -108,35 +108,35 @@ const brand = (state = {data: [], page: 1, totalpage: null}, action) => {
         default: return state
     }
 }
-const order = (state = { data: [], dataId:[], page: 1, totalpage: null}, action) => {
-    switch(action.type) {
-        case productTypes.ORDER_SET_PAGE: {
-            return {
-                ...state,
-                page: action.page
-            }
-        }
-        case productTypes.ORDER_SET_TOTAL_PAGE: {
-            return {
-                ...state,
-                totalpage: action.totalpage
-            }
-        }
-        case productTypes.ORDER_SET_DATA: {
-            return {
-                ...state,
-                data: action.data
-            }
-        }
-        case productTypes.ORDER_SET_DATA_BY_ID: {
-            return {
-                ...state,
-                dataId: action.data
-            }
-        }
-        default: return state
-    }
-}
+// const order = (state = { data: [], dataId:[], page: 1, totalpage: null}, action) => {
+//     switch(action.type) {
+//         case productTypes.ORDER_SET_PAGE: {
+//             return {
+//                 ...state,
+//                 page: action.page
+//             }
+//         }
+//         case productTypes.ORDER_SET_TOTAL_PAGE: {
+//             return {
+//                 ...state,
+//                 totalpage: action.totalpage
+//             }
+//         }
+//         case productTypes.ORDER_SET_DATA: {
+//             return {
+//                 ...state,
+//                 data: action.data
+//             }
+//         }
+//         case productTypes.ORDER_SET_DATA_BY_ID: {
+//             return {
+//                 ...state,
+//                 dataId: action.data
+//             }
+//         }
+//         default: return state
+//     }
+// }
 const product = (state = {data: [], page: 1, totalpage: null}, action) => {
     switch(action.type){
         case productTypes.SET_PRODUCT: {
@@ -194,6 +194,5 @@ const product = (state = {data: [], page: 1, totalpage: null}, action) => {
 export default combineReducers({
     category,
     product, 
-    brand,
-    order
+    brand
 })
