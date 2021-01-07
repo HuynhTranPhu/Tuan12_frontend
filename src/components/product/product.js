@@ -12,6 +12,7 @@ class Product extends Component {
       category: "category",
       brand: "brand",
       name: "",
+      count:"",
       price: "",
       img: "",
       description: "",
@@ -116,6 +117,7 @@ class Product extends Component {
     const {
       id_category,
       name,
+      count,
       price,
       description,
       id_brand,
@@ -124,6 +126,16 @@ class Product extends Component {
     if (name.length <= 0) {
       this.setState({
         noti: "Name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (count <= 0) {
+      this.setState({
+        noti: "Count invalid"
       });
       return;
     } else {
@@ -174,6 +186,7 @@ class Product extends Component {
     this.props.addProduct(
       id_category,
       name,
+      count,
       price,
       description,
       id_brand,
@@ -184,6 +197,7 @@ class Product extends Component {
     const {
       id_category,
       name,
+      count,
       price,
       description,
       id_brand,
@@ -195,6 +209,16 @@ class Product extends Component {
     if (name.length <= 0) {
       this.setState({
         noti: "Name invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (count <= 0) {
+      this.setState({
+        noti: "Count invalid"
       });
       return;
     } else {
@@ -245,6 +269,7 @@ class Product extends Component {
     this.props.updateProduct(
       id,
       name,
+      count,
       id_category,
       price,
       description,
@@ -302,6 +327,7 @@ class Product extends Component {
         category: "category",
         brand: "brand",
         name: "",
+        count:"",
         price: "",
         img: "",
         description: "",
@@ -388,10 +414,16 @@ class Product extends Component {
                 <tbody>
                   <tr>
                     <th>
+                      <i className="icon_profile" /> Avatar
+                    </th>
+                    <th>
                       <i className="icon_profile" /> Name
                     </th>
                     <th>
                       <i className="icon_currency" /> Price
+                    </th>
+                    <th>
+                    <i class="fas fa-calculator"/> Count
                     </th>
                     <th>
                       <i className="icon_pin_alt" /> Description
@@ -406,8 +438,14 @@ class Product extends Component {
                   {this.props.product.map((element, index) => {
                     return (
                       <tr>
+                        <td>
+                          {
+                             <img class="avatar" src={element.img} alt="Product" />
+                          }
+                        </td>
                         <td>{element.name}</td>
                         <td>{element.price}</td>
+                        <td>{element.count}</td>
                         <td style={{ width: "40%" }}>{element.description}</td>
                         <td>{element.status.toString()}</td>
                         <td>
@@ -417,6 +455,7 @@ class Product extends Component {
                                 this.setState({
                                   curr: "update",
                                   name: element.name,
+                                  count: element.count,
                                   price: element.price,
                                   description: element.description,
                                   category: this.getNameCategoryByID(
@@ -483,6 +522,26 @@ class Product extends Component {
                           minlength="5"
                           type="text"
                           required
+                        />
+                      </div>
+                      
+                    </div>
+                    <div className="form-group ">
+                      <label for="curl" className="control-label col-lg-2">
+                        Count
+                      </label>
+                      <div className="col-lg-10">
+                        <input
+                          value={this.state.count}
+                          onChange={e =>
+                            this.setState({
+                              count: e.target.value
+                            })
+                          }
+                          className="form-control "
+                          id="curl"
+                          type="text"
+                          name="url"
                         />
                       </div>
                     </div>

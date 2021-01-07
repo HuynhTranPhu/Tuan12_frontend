@@ -33,11 +33,12 @@ export const deleteProduct = (id) => async(dispatch, getState) => {
     //console.log(res)
     dispatch(getProduct())
 }
-export const addProduct = (id_category, name, price, description, id_brand, file) => async (dispatch, getState) => {
+export const addProduct = (id_category, name,count, price, description, id_brand, file) => async (dispatch, getState) => {
     let data = new FormData()
     data.append('file', file)
     data.append('id_category', id_category) 
     data.append('name', name) 
+    data.append('count', count) 
     data.append('price', price)  
     data.append('description', description)
     data.append('id_brand', id_brand)
@@ -53,12 +54,13 @@ export const addProduct = (id_category, name, price, description, id_brand, file
     dispatch(addProductSuccess())
     dispatch(getProduct())
 }
-export const updateProduct = (id, name, id_category, price, description, id_brand, file, status) => async (dispatch, getState) => {
+export const updateProduct = (id, name,count, id_category, price, description, id_brand, file, status) => async (dispatch, getState) => {
     let data = new FormData()
     data.append('file', file)
     data.append('id', id)
     data.append('id_category', id_category) 
     data.append('name', name) 
+    data.append('count', count) 
     data.append('price', price)  
     data.append('description', description)
     data.append('id_brand', id_brand)

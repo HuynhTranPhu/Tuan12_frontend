@@ -2396,7 +2396,7 @@ div[data-role="editor-toolbar"] {
 
 }
 
-}
+
 
 .panel.panel-default.panel-heading {
 
@@ -9908,4 +9908,8 @@ span.customSelect.changed {
 
 #sendmessage.show, #errormessage.show, .show {
 	display:block;
+}
+.avatar{
+    height: 35px;
+    width: 35px;
 }
