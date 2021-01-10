@@ -14,8 +14,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-@import url("./components/slider/Slider.css");
-@import url("./components/View.order/View.order.css");
+/* @import url("./components/slider/Slider.css"); */
+
 @import url("./components/UI/Card/style.css");
 @import url("./containers/OrderContainer/index.css");
 @import url("./containers/History/index.css");
+@import url("./containers/Bill/index.css");

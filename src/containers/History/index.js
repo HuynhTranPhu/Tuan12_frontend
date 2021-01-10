@@ -48,7 +48,7 @@ const History = (props) => {
                                                     order.orders.length === 0 ?(                                                  
                                                         <div className="empty-cart">
                                                             {/* <img className="empty-cart-img" src="/images/emptyCart.png" alt="Product" /> */}
-                                                            <p className="empty-cart-note">Your orders is empty</p>
+                                                            <p className="empty-cart-note">Not orders now</p>
                                                             <Link className="empty-cart-shopping" to="/">Go to dashboard</Link>
                                                         </div>
                                                     ):
@@ -58,6 +58,7 @@ const History = (props) => {
                                                         <th>Details</th>
                                                         <th>Total</th>
                                                         <th>Status</th>
+                                                        <th style={{textAlign:"center"}}>Export Bill</th>
                                                     
                                                     </tr>   
                                                 }
@@ -89,6 +90,7 @@ const History = (props) => {
                                                     <td><Link to={"/ordermanager/"+ item._id}>View Details</Link></td>
                                                     <td>${item.order_subtotal}</td>
                                                     <td>{item.paymentStatus}</td>
+                                                    <td style={{textAlign:"center"}}><Link to={"/bill/"+ item._id}><i className="fas fa-file-export center"></i></Link></td>
                                                     {/* <td>
                                                         <button disabled={item.order_status.toString() ==="delivering"} onClick ={() =>removeOrderHandler(item._id)}>
                                                                 <i className="fa fa-trash" />

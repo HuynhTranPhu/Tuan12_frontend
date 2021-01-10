@@ -9,6 +9,7 @@ import LoginContainer from "./login.container";
 import StatisticalContainer from './statistical.container'
 import Orders from './OrderContainer/order.container'
 import History from "./History";
+import Bill from "./Bill";
 class App extends Component {
   render() {
     return (
@@ -23,6 +24,8 @@ class App extends Component {
           <Route exact path="/statistical" component={StatisticalContainer} />
           <Route exact path="/ordermanager/:id" component={Orders} />
           <Route exact path="/order" component={History} />
+          <Route exact path="/bill/:id" component={Bill} />
+          {/* <Route exact path="*" component={NotFound} /> */}
           {/* <Route exact path="/view-orderDetail" component={viewOrderContainer} /> */}
         </Switch>
       </Router>
