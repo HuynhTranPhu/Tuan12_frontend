@@ -12,7 +12,8 @@ class Product extends Component {
       category: "category",
       brand: "brand",
       name: "",
-      count:"",
+      color:"",
+      quantity:"",
       price: "",
       img: "",
       description: "",
@@ -117,7 +118,8 @@ class Product extends Component {
     const {
       id_category,
       name,
-      count,
+      color,
+      quantity,
       price,
       description,
       id_brand,
@@ -133,9 +135,19 @@ class Product extends Component {
         noti: ""
       });
     }
-    if (count <= 0) {
+    if (color.length <= 0) {
       this.setState({
-        noti: "Count invalid"
+        noti: "Color invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (quantity <= 0) {
+      this.setState({
+        noti: "Quantity invalid"
       });
       return;
     } else {
@@ -186,7 +198,8 @@ class Product extends Component {
     this.props.addProduct(
       id_category,
       name,
-      count,
+      color,
+      quantity,
       price,
       description,
       id_brand,
@@ -197,7 +210,8 @@ class Product extends Component {
     const {
       id_category,
       name,
-      count,
+      color,
+      quantity,
       price,
       description,
       id_brand,
@@ -216,9 +230,19 @@ class Product extends Component {
         noti: ""
       });
     }
-    if (count <= 0) {
+    if (color.length <= 0) {
       this.setState({
-        noti: "Count invalid"
+        noti: "Color invalid"
+      });
+      return;
+    } else {
+      this.setState({
+        noti: ""
+      });
+    }
+    if (quantity <= 0) {
+      this.setState({
+        noti: "Quantity invalid"
       });
       return;
     } else {
@@ -269,7 +293,8 @@ class Product extends Component {
     this.props.updateProduct(
       id,
       name,
-      count,
+      color,
+      quantity,
       id_category,
       price,
       description,
@@ -327,7 +352,8 @@ class Product extends Component {
         category: "category",
         brand: "brand",
         name: "",
-        count:"",
+        color:"",
+        quantity:"",
         price: "",
         img: "",
         description: "",
@@ -423,7 +449,10 @@ class Product extends Component {
                       <i className="icon_currency" /> Price
                     </th>
                     <th>
-                    <i class="fas fa-calculator"/> Count
+                    <i class="fas fa-calculator"/> Quantity
+                    </th>
+                    <th>
+                    <i class="fas fa-calculator"/> Color
                     </th>
                     <th>
                       <i className="icon_pin_alt" /> Description
@@ -445,7 +474,8 @@ class Product extends Component {
                         </td>
                         <td>{element.name}</td>
                         <td>{element.price}</td>
-                        <td>{element.count}</td>
+                        <td>{element.quantity}</td>
+                        <td>{element.color}</td>
                         <td style={{ width: "40%" }}>{element.description}</td>
                         <td>{element.status.toString()}</td>
                         <td>
@@ -455,7 +485,8 @@ class Product extends Component {
                                 this.setState({
                                   curr: "update",
                                   name: element.name,
-                                  count: element.count,
+                                  quantity: element.quantity,
+                                  color: element.color,
                                   price: element.price,
                                   description: element.description,
                                   category: this.getNameCategoryByID(
@@ -528,14 +559,33 @@ class Product extends Component {
                     </div>
                     <div className="form-group ">
                       <label for="curl" className="control-label col-lg-2">
-                        Count
+                      Quantity
                       </label>
                       <div className="col-lg-10">
                         <input
-                          value={this.state.count}
+                          value={this.state.quantity}
                           onChange={e =>
                             this.setState({
-                              count: e.target.value
+                              quantity: e.target.value
+                            })
+                          }
+                          className="form-control "
+                          id="curl"
+                          type="text"
+                          name="url"
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group ">
+                      <label for="curl" className="control-label col-lg-2">
+                      Color
+                      </label>
+                      <div className="col-lg-10">
+                        <input
+                          value={this.state.color}
+                          onChange={e =>
+                            this.setState({
+                              color: e.target.value
                             })
                           }
                           className="form-control "

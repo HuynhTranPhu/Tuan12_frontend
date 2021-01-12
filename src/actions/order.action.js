@@ -57,7 +57,7 @@ export const viewHistoryGet = (id_order) => async (dispatch) =>{
 export const removeOrder = (id_order) => async (dispatch) =>{ 
   try{ 
      dispatch({type: REMOVE_ORDER_SUCCESS, payload:id_order});
-    const {data} = await axios.put("/order/" +id_order);
+    const {data} = await axios.put("/admin/order/" +id_order);
     dispatch(viewHistoryGet(id_order));
       
   }catch(error){

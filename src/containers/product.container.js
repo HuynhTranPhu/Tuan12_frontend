@@ -44,8 +44,9 @@ class ProductContainer extends Component {
           isupdate={this.props.isupdate}
           addProduct={(
             id_category,
+            color,
             name,
-            count,
+            quantity,
             price,
             release_date,
             describe,
@@ -56,7 +57,8 @@ class ProductContainer extends Component {
             this.props.productActions.addProduct(
               id_category,
               name,
-              count,
+              color,
+              quantity,
               price,
               release_date,
               describe,
@@ -68,7 +70,8 @@ class ProductContainer extends Component {
           updateProduct={(
             id,
             name,
-            count,
+            color,
+            quantity,
             id_category,
             price,
             release_date,
@@ -80,7 +83,8 @@ class ProductContainer extends Component {
             this.props.productActions.updateProduct(
               id,
               name,
-              count,
+              color,
+              quantity,
               id_category,
               price,
               release_date,
