@@ -1,4 +1,4 @@
-import { productTypes } from '../constants/action.types'
+import { productTypes, PRODUCT_LIST_FAIL, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS } from '../constants/action.types'
 import { combineReducers } from 'redux'
 const category = (state = { data: [], page: 1, totalpage: null }, action) => {
     switch (action.type) {
@@ -191,8 +191,16 @@ const product = (state = {data: [], page: 1, totalpage: null}, action) => {
         default: return state
     }
 }
+function stockReducer(state={stock:[]}, action){
+    switch(action.type){
+        case PRODUCT_LIST_SUCCESS:
+            return {loading : false, stock : action.payload};
+        default : return state;
+    }
+  }
 export default combineReducers({
     category,
     product, 
     brand
 })
+export {stockReducer}

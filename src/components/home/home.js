@@ -1,6 +1,9 @@
-import React, { Component } from "react";
-import { useSelector } from "react-redux";
+import React, {  useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getCustomerOrders } from "../../actions/order.action";
+import { getProduct, listProducts } from "../../actions/product.action";
+import Char from "../Chart";
 // class Home extends Component {
 //   constructor() {
 //     super();
@@ -21,8 +24,18 @@ import { Link } from "react-router-dom";
 
 
 const Home = (props) => {
-  //const {top_product}=useSelector(state=>state.top_product)
-  const top_product=[];
+  const order = useSelector((state) => state.order);
+  const stock = useSelector((state) => state.stock);
+  console.log(stock);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+  
+    dispatch(getCustomerOrders());
+    dispatch(listProducts());
+    
+}, [dispatch])
+
   return (
     <div>
 
@@ -47,32 +60,32 @@ const Home = (props) => {
             </div>
 
             <div className="row">
-              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              {/* <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <div className="info-box blue-bg">
                   <i className="fa fa-cloud-download" />
                   <div className="count">6.674</div>
                   <div className="title">Download</div>
                 </div>
-              </div>
-              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              </div> */}
+              <div className="col-lg-4 col-md-3 col-sm-12 col-xs-12">
                 <div className="info-box brown-bg">
                   <i className="fa fa-shopping-cart" />
-                  <div className="count">7.538</div>
+                  <div className="count">{order.orders.length}</div>
                   <div className="title">Purchased</div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div className="col-lg-4 col-md-3 col-sm-12 col-xs-12">
                 <div className="info-box dark-bg">
                   <i className="fa fa-thumbs-o-up" />
-                  <div className="count">4.362</div>
+                  <div className="count">{order.orders.length}</div>
                   <div className="title">Order</div>
                 </div>
               </div>
 
-              <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+              <div className="col-lg-4 col-md-3 col-sm-12 col-xs-12">
                 <div className="info-box green-bg">
                   <i className="fa fa-cubes" />
-                  <div className="count">1.426</div>
+                  <div className="count">{stock.stock.length}</div>
                   <div className="title">Stock</div>
                 </div>
               </div>
@@ -87,65 +100,18 @@ const Home = (props) => {
                     <h2>
                       <i className="fa fa-flag-o red" />
                       <strong>
-                        Digital sales number
+                       Statistical manuals
                       </strong>
                     </h2>
-                    <div className="panel-actions">
-                      <Link to="" className="btn-close">
-                        <i className="fa fa-times" />
-                      </Link>
-                    </div>
                   </div>
-                  <div className="panel-body">
-                    <table className="table bootstrap-datatable countries">
-                      <thead>
-                        <tr>
-                          <th />
-                          <th>Name</th>
-                          <th>Price</th>
-                          <th>Sales number</th>
-                          <th>Performance</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {top_product.map((element, index) => {
-                          return(
-                            <tr>
-                            <td>
-                              <img
-                                src={element.img}
-                                style={{ height: "18px", marginTop: "-2px" }}
-                              />
-                            </td>
-                            <td>{element.name}</td>
-                            <td>{element.price}</td>
-                            <td>{element.count}</td>
-                            <td>
-                              <div className="progress thin">
-                                <div
-                                  className="progress-bar progress-bar-danger"
-                                  role="progressbar"
-                                  aria-valuenow="80"
-                                  aria-valuemin="0"
-                                  aria-valuemax="100"
-                                  style={{ width: this.tinh(element.count) }}
-                                />
-                              </div>
-                              <span className="sr-only">73%</span>
-                            </td>
-                          </tr>
-                          ) 
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
+                 
                 </div>
               </div>
 
              
             </div>
 
-           
+           <Char/>
             <br />
             <br />
 

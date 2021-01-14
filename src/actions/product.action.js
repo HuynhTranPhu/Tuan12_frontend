@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { productTypes } from '../constants/action.types'
+import { productTypes, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL } from '../constants/action.types'
 
 //product
 export const getProduct = () => async (dispatch, getState) => {
@@ -19,6 +19,18 @@ export const getProduct = () => async (dispatch, getState) => {
     }
     dispatch(setProduct(res.data.data))
     dispatch(setTotalPage(res.data.totalPage))
+}
+export const listProducts = () => async (dispatch) =>{
+    try{
+         const {data} = await axios.get('/product');
+        //console.log({data});
+        dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
+        
+    }  
+    catch(error){
+        
+    }
+
 }
 export const deleteProduct = (id) => async(dispatch, getState) => {
     //let res

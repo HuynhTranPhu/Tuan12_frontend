@@ -5,13 +5,13 @@ export const setTopProduct = (data) => ({
     data
 })
 export const getTopProduct = () => async (dispatch, getState) => {
-    let res = null
-    try {
-        res = await axios.post('/order/top/')
-    }
-    catch(err) {
-        console.log(err)
-        return
-    }
-    dispatch(setTopProduct(res.data.data))
+    // let res = null
+    // try {
+    //     res = await axios.post('/order/top/')
+    // }
+    // catch(err) {
+    //     console.log(err)
+    //     return
+    // }
+    // dispatch(setTopProduct(res.data.data))
 }

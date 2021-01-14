@@ -27,7 +27,7 @@ class HomeContainer extends Component {
       <section id="container" className="">
         <NavbarContainer />
         <Slider />
-        <Home top_product={this.props.top_product} />
+        <Home  />
       </section>
     );
   }
