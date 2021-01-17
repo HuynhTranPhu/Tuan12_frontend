@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { userTypes } from '../constants/action.types'
 import storeConfig from '../config/store.config'
+
+require ('dotenv').config();
+const url = process.env.REACT_APP_URL_CLIENT;
 export const setUser = (data) => ({
     type: userTypes.SET_USER,
     data
@@ -8,7 +11,7 @@ export const setUser = (data) => ({
 export const getUser = () => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.get('/admin/getAllUser/' + getState().userReducers.user.page)
+        res = await axios.get(`${url}/admin/getAllUser/` + getState().userReducers.user.page)
     }
     catch (err) {
         console.log(err)
@@ -61,7 +64,7 @@ export const addUser = (email, password, name , is_admin) => async (dispatch, ge
     //let res
     try {
         //res = 
-        await axios.post('/admin/adduser', {
+        await axios.post(`${url}/admin/adduser`, {
             email: email,
             name: name,
             password: password,
@@ -80,7 +83,7 @@ export const updateUser = (email, name, status) => async (dispatch, getState) =>
     //let res
     try {
         //res = 
-        await axios.put('/admin/updateuser', {
+        await axios.put(`${url}/admin/updateuser`, {
             email: email,
             name: name,
             status: status
@@ -98,7 +101,7 @@ export const deleteUser = (email) => async (dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.put('/admin/deleteuser',{
+        await axios.put(`${url}/admin/deleteuser`,{
             email: email
         })
     }
@@ -132,7 +135,7 @@ export const auth = () => async (dispatch, getState)  => {
     //let res
     try {
         //res = 
-        await axios.post('/auth', {
+        await axios.post(`${url}/auth`, {
             email: email,
             token: token,
         })

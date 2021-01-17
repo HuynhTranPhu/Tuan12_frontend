@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userActions from "../actions/user.action";
 import Login from "../components/login/login";
+require ('dotenv').config();
+const url = process.env.REACT_APP_URL_CLIENT;
 //import  { Redirect } from 'react-router-dom'
 class LoginContainer extends Component {
   constructor(props) {
@@ -22,7 +24,7 @@ class LoginContainer extends Component {
     let res;
     try {
       // res = await axios.post("http://localhost:8080/admin/login", {
-        res = await axios.post("/admin/login", {
+        res = await axios.post(`${url}/admin/login`, {
         email: email,
         password: password
       });

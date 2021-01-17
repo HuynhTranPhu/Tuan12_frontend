@@ -1,6 +1,10 @@
 import axios from 'axios'
-import { productTypes, PRODUCT_LIST_REQUEST, PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL } from '../constants/action.types'
+import { productTypes, PRODUCT_LIST_SUCCESS } from '../constants/action.types'
 
+
+
+require ('dotenv').config();
+const url = process.env.REACT_APP_URL_CLIENT;
 //product
 export const getProduct = () => async (dispatch, getState) => {
     let res
@@ -11,7 +15,7 @@ export const getProduct = () => async (dispatch, getState) => {
     //     })
     // }
     try {
-        res = await axios.get('/admin/getallproduct/' + getState().productReducers.product.page)
+        res = await axios.get(`${url}/admin/getallproduct/` + getState().productReducers.product.page)
     }
     catch (err) {
         console.log(err)
@@ -22,7 +26,7 @@ export const getProduct = () => async (dispatch, getState) => {
 }
 export const listProducts = () => async (dispatch) =>{
     try{
-         const {data} = await axios.get('/product');
+         const {data} = await axios.get(`${url}/product`);
         //console.log({data});
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
         
@@ -36,7 +40,7 @@ export const deleteProduct = (id) => async(dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.put('/admin/deleteproduct/' +id)
+        await axios.put(`${url}/admin/deleteproduct/` +id)
     }
     catch (err) {
         console.log(err)
@@ -58,7 +62,7 @@ export const addProduct = (id_category, name,color,quantity, price, description,
     //let res
     try {
         //res = 
-        await axios.post('/admin/addproduct', data)
+        await axios.post(`${url}/admin/addproduct`, data)
     }
     catch(err) {
         dispatch(addProductFail())
@@ -82,7 +86,7 @@ export const updateProduct = (id, name,color,quantity, id_category, price, descr
     //let res
     try {
         //res = 
-        await axios.put('/admin/updateproduct', data)
+        await axios.put(`${url}/admin/updateproduct`, data)
     }
     catch(err) {
         dispatch(updateProductFail())
@@ -128,7 +132,7 @@ export const categorySetTotalPage = (totalpage) => ({
 export const getCategory = () => async (dispatch, getState) =>  {
     let res
     try {
-        res = await axios.get('/admin/getallcategory/' + getState().productReducers.category.page)
+        res = await axios.get(`${url}/admin/getallcategory/` + getState().productReducers.category.page)
     }
     catch (err) {
         return
@@ -142,7 +146,7 @@ export const getCategory = () => async (dispatch, getState) =>  {
 export const getBrand = () => async (dispatch, getState) => {
     let res
     try {
-        res = await axios.get('/admin/getallbrand/' + getState().productReducers.brand.page)
+        res = await axios.get(`${url}/admin/getallbrand/` + getState().productReducers.brand.page)
     }
     catch(err) {
         return
@@ -181,7 +185,7 @@ export const addCategory =  (name, path) => async (dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.post('/admin/addcategory', {
+        await axios.post(`${url}/admin/addcategory`, {
             name: name,
             path: path
         })
@@ -198,7 +202,7 @@ export const updateCategory =  (id, name, status) => async (dispatch, getState) 
     //let res
     try {
         //res = 
-        await axios.put('/admin/updatecategory', {
+        await axios.put(`${url}/admin/updatecategory`, {
             id: id,
             name: name,
             status:status
@@ -231,7 +235,7 @@ export const addBrand =  (name) => async (dispatch, getState) => {
     //let res
     try {
         //res = 
-        await axios.post('/admin/addbrand', {
+        await axios.post(`${url}/admin/addbrand`, {
             name: name
         })
     }
@@ -247,7 +251,7 @@ export const updateBrand =  (id, name, status) => async (dispatch, getState) => 
     //let res
     try {
         //res = 
-        await axios.put('/admin/updatebrand', {
+        await axios.put(`${url}/admin/updatebrand`, {
             id: id,
             name: name,
             status:status
@@ -346,30 +350,3 @@ export const orderSetTotalPage = (totalpage) => ({
     type: productTypes.ORDER_SET_TOTAL_PAGE,
     totalpage
 })
-// export const getOrder = (status) => async(dispatch, getState) => {
-//     let link = "/order/status/true"
-//     if(status === "false") {
-//         link = "/order/status/false"
-//     }
-//     let res = null
-//     try {
-//        res =  await axios.get(link)
-//     }
-//     catch(err) {
-//         return
-//     }
-//     dispatch(setOrder(res.data.data))
-//     dispatch(orderSetTotalPage(res.data.totalPage))
-
-// }
-// export const getOrderById = (id_order) => async(dispatch, getState) => {
-//     let link = "/order/detail/"+ id_order;
-//     let res = null
-//     try {
-//        res =  await axios.get(link)
-//     }
-//     catch(err) {
-//         return
-//     }
-//     dispatch(setOrderById(res.data.data))
-// }
