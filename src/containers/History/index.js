@@ -88,7 +88,7 @@ const History = (props) => {
                                                         </div>
                                                     </td> */}
                                                     <td><Link to={"/ordermanager/"+ item._id}>View Details</Link></td>
-                                                    <td>${item.order_subtotal}</td>
+                                                    <td>${item.order_subtotal }</td>
                                                     <td>{item.paymentStatus}</td>
                                                     <td style={{textAlign:"center"}}><Link to={"/bill/"+ item._id}><i className="fas fa-file-export center"></i></Link></td>
                                                     {/* <td>
